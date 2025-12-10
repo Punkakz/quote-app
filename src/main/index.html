@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Quote Generator</title>
+</head>
+<body>
+    <h1 id="quote">Loading...</h1>
+    <h3 id="author"></h3>
+    <img id="image" width="400" />
+
+    <br><br>
+    <button onclick="loadQuote()">Next Quote</button>
+
+<script>
+function loadQuote() {
+    fetch("/quote")
+      .then(res => res.json())
+      .then(data => {
+          document.getElementById("quote").innerText = data.quote;
+          document.getElementById("author").innerText = data.author;
+          document.getElementById("image").src = data.image;
+      });
+}
+loadQuote();
+</script>
+</body>
+</html>
